@@ -1,12 +1,14 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
-ProductManager productManager = new ProductManager(new InMemoryProductDal());
-foreach (var product in productManager.GetAll())
+//Open Closed Principle
+ProductManager productManager = new ProductManager(new EfProductDal());
+foreach (var product in productManager.GetByUnitPrice(15,25))
 {
     Console.WriteLine(product.ProductName);
 }
 
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Finish");
