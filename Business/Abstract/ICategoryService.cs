@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Business.Abstract
 {
-    public interface ICategoryDal:Core.DataAccess.IEntityRepository<Category>
+    public interface ICategoryService
     {
-       
+        List<Category> GetAll();
+
+        Category GetById(int categoryId);
+
+      
     }
 }
