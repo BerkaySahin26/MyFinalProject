@@ -20,6 +20,11 @@ namespace Business.Concrete
             _ProductDal = productDal;
         }
 
+        public void Add(Product product)
+        {
+            _ProductDal.Add(product);
+        }
+
         public List<Product> GetAll()
         {
             return _ProductDal.GetAll();
@@ -29,6 +34,11 @@ namespace Business.Concrete
         {
             return _ProductDal.GetAll(p=>p.CategoryId==id);      
                 
+        }
+
+        public Product GetById(int productId)
+        {
+            return _ProductDal.Get(p=> p.ProductId==productId);
         }
 
         public List<Product> GetByUnitPrice(decimal min, decimal max)
