@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -20,14 +22,19 @@ namespace Business.Concrete
             _ProductDal = productDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
+            if (product.ProductName.Length<2)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
             _ProductDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public List<Product> GetAll()
+        public IDataResult <List<Product>> GetAll()
         {
-            return _ProductDal.GetAll();
+            return new DataResult (_ProductDal.GetAll());
         }
 
         public List<Product> GetAllByCategoryId(int id)
@@ -50,5 +57,7 @@ namespace Business.Concrete
         {
            return _ProductDal.GetProductDetails();
         }
+
+        
     }
 }
