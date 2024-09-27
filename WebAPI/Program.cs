@@ -29,6 +29,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 
 // Add services to the container
 builder.Services.AddControllers();
+builder.Services.AddCors();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // Configure JWT Authentication
@@ -64,6 +65,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder => builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod());
 
 app.UseHttpsRedirection();
 app.UseAuthentication(); // Add this line to enable authentication

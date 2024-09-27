@@ -57,7 +57,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult <List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour==18)
+            if (DateTime.Now.Hour==15)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -83,7 +83,7 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            if (DateTime.Now.Hour == 18)
+            if (DateTime.Now.Hour == 16)
             {
                 return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime);
             }
