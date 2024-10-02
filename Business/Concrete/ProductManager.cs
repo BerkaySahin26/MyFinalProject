@@ -96,9 +96,10 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        IDataResult<List<Product>> IProductService.GetAllByCategoryId(int id)
+        IDataResult<List<Product>> IProductService.GetAllByCategoryId(int categoryId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId).ToList());
+
         }
 
         IDataResult<Product> IProductService.GetById(int productId)
